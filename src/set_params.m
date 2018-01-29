@@ -38,7 +38,6 @@ sigma_R = 1e-3;
 
 Q = eye(N_states)*(scale*sqrt(dt)*sigma_all)^2;                             % add a tiny bit of noise to all states (added for numerical stability)
 Q(2*N_syn+1:end,2*N_syn+1:end) = eye(N_syn+N_inputs)*(scale*sqrt(dt)*sigma_params)^2;
-% **** HARDCODED NUMBERS HERE
 Q(2*N_syn+1,2*N_syn+1) = (scale*sqrt(dt)*sigma_input)^2;
 if N_inputs > 1
     Q(2*N_syn+2,2*N_syn+2) = (scale*sqrt(dt)*sigma_offset)^2;
@@ -188,13 +187,6 @@ end
 % rescale H
 %
 H = H/scale;                                                        % !scale! this is help deal with our numerical issues.
-
-% set_ABC.m
-
-% dean freestone
-
-% this script take the parameters from set_params and creates the system
-% matrices for the neural mass model (recurrent NN)
 
 %% define A
 %

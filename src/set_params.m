@@ -1,9 +1,6 @@
 
-function [A,B,C,N_states,N_syn,N_inputs,N_samples,xi,v0,varsigma,Q,R,H,y] = set_params(input,input_offset)
-
-% set_params.m
-
-% set parameters - remove redundant states
+function [A,B,C,N_states,N_syn,N_inputs,N_samples,xi,v0,varsigma,Q,R,H,y] = ...
+    set_params(input,input_offset,TimeOfSim,Fs)
 
 scale = 50;                         % this is to get states and derivatives on the same order of magnitude
 
@@ -13,11 +10,8 @@ mV = 1;
 V2mVfactor = 1e3;
 
 % time parameters
-%
-Fs = 0.4e3;
 dt = 1/Fs;                                                                 % time step (s)
-TimeOfSim = 20;                                                             % time of simulation (s)
-N_samples = round(TimeOfSim/dt);                                            % number of time points to simulate
+N_samples = round(TimeOfSim/dt);                           % number of time points to simulate
 
 if ~isempty(input_offset)
     N_inputs = 2;
@@ -134,7 +128,7 @@ syn_index = 0;
 %
 syn_index = syn_index + 1;
 tau(syn_index) = in_tau;
-p(syn_index) = alpha_i*2*f_max*C4*dt / tau(syn_index);          % note the time constant and time step are in the gains
+alpha(syn_index) = alpha_i*2*f_max*C4*dt / tau(syn_index);          % note the time constant and time step are in the gains
 presyn_inputs = 2;                                                  % the presynaptic population is getting inputs from synapses 2
 if ~isempty(presyn_inputs)
     Gamma(2*syn_index,2*presyn_inputs-1) = 1;                       % set the entries of Gamma corresponding to indices of presynaptic inputs to 1
@@ -262,5 +256,3 @@ end
 rng(1)
 v = sqrt(R)*randn(1,N_samples);
 y = H*xi + v;                           % simulated EEG signal
-
-end

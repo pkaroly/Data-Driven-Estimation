@@ -1,16 +1,18 @@
+clear
+close all
+clc
+
 load(sprintf('../data/Seizure_%03d.mat',23));
 addpath(genpath('../src/'));
 
 input = 300;
 input_offset = [];
-
-% Kalman filter
-%
-
 % generate some data
 %
+time = 5;
+Fs = 0.4e3;
 [A,B,C,N_states,N_syn,N_inputs,N_samples,xi, ...
-    v0,varsigma,Q,R,H,y] = set_params(input,input_offset);
+    v0,varsigma,Q,R,H,y] = set_params(input,input_offset,time,Fs);
 
 if ~isempty(input_offset)
     % reset the offset
@@ -38,6 +40,8 @@ t_end_anneal = N_samples/20;
 
 % loop through 16 chans
 for iCh = 1:16
+    
+    fprintf('Channel %02d ...',iCh);
     
     % get one channel at a time
     % NB - portal data is inverted. we need to scale it to some
@@ -69,8 +73,13 @@ for iCh = 1:16
         P_hat(:,:,t) = (eye(N_states) - K*H)*P_1m;
         P_diag(:,t) = diag(squeeze(P_hat(:,:,t)));
         
+        if t > 2
+            fprintf('\b\b\b\b');
+        end
+        fprintf('%03d%%', round(100*t/N_samples));
     end
     
+    close all
     figure('name','membrane potential estimates' ,'units','normalized','position',[0 0 1 1] )
     subplot(411),plot(xi_hat(1,:))
     subplot(412),plot(xi_hat(3,:))
@@ -79,9 +88,14 @@ for iCh = 1:16
     
     figure('name','parameter estimates' ,'units','normalized','position',[0 0 1 1] )
     subplot(511),plot(xi_hat(9,:))
+    title('Input');
     subplot(512),plot(xi_hat(10,:))
+    title('Inhibitory -> Pyramidal');
     subplot(513),plot(xi_hat(11,:))
+    title('Pyramidal -> Inhibitory');
     subplot(514),plot(xi_hat(12,:))
+     title('Pyramidal -> Excitatory');
     subplot(515),plot(xi_hat(13,:))
-    
+    title('Excitatory -> Pyramidal');
+    drawnow;
 end

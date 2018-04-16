@@ -2,7 +2,7 @@ clear
 close all
 clc
 
-load(sprintf('../data/Seizure_%03d.mat',23));
+load('../data/Seizure.mat');
 addpath(genpath('../src/'));
 
 input = 300;

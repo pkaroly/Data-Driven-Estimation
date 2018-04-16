@@ -1,4 +1,13 @@
-clear all
+%% generateData
+% plots simulated data from the neural mass model at different input values
+
+
+%%
+% Dean Freestone, Philippa Karoly 2016
+% This code is licensed under the MIT License 2018
+
+%%
+clear
 clc
 close all
 

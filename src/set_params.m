@@ -1,3 +1,38 @@
+%% set_params
+% Set parameters for the neural mass model
+
+% inputs
+% ~~~~~~
+% input - the input to the model
+% input_offset - value of the offset (to compensate for a DC offset if required - i.e. there is a DC shift in the model but data may not be recorded with DC component)
+% TimeOfSim - length of time to simulate data for
+% Fs - sampling frequency (Hz)
+
+% outputs
+% ~~~~~~~
+% A,B,C,H: model and observation matrices (defined in Karoly et al 2018)
+% N_states,N_syn,N_inputs,N_samples: model dimensions
+% xi, y: simulated data (xi = state vector, y = measurement)
+% v0,varsigma: model constants
+% Q,R: model and measurement noise
+
+%%
+% Neural mass model parameters have been modifided from Jansen & Rit (1995)
+% 
+% For further references see:
+% [1] Freestone, D. R., Karoly, P. J., Neši?, D., Aram, P., Cook, M. J., & Grayden, D. B. (2014). 
+% Estimation of effective connectivity via data-driven neural modeling. Frontiers in neuroscience, 8, 383
+% 
+% [2] Ahmadizadeh, S., Karoly, P. J., Neši?, D., Grayden, D. B., Cook, M. J., Soudry, D., & Freestone, D. R. (2018). 
+% Bifurcation analysis of two coupled Jansen-Rit neural mass models. PloS one, 13(3), e0192842.
+% 
+% [3] Kuhlmann, L., Freestone, D. R., Manton, J. H., Heyse, B., Vereecke, H. E., Lipping, T., ... & Liley, D. T. (2016). 
+% Neural mass model-based tracking of anesthetic brain states. NeuroImage, 133, 438-456.
+%%
+% Dean Freestone, Philippa Karoly 2016
+% This code is licensed under the MIT License 2018
+
+%%
 
 function [A,B,C,N_states,N_syn,N_inputs,N_samples,xi,v0,varsigma,Q,R,H,y] = ...
     set_params(input,input_offset,TimeOfSim,Fs)

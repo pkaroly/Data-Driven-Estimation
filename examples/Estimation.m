@@ -1,3 +1,13 @@
+%% Estimation
+% runs the state/parameter estimation and plots results for a single
+% channel at a time
+
+%% 
+% Dean Freestone, Philippa Karoly 2016
+% This code is licensed under the MIT License 2018
+
+
+%%
 clear
 close all
 clc

@@ -27,12 +27,15 @@ Additional figures for connectivity parameter estimation and signal energy showi
 
 ## Further References
 More ifnormation can be found in the following refrences
-- 1 Freestone, D. R., Karoly, P. J., Neši?, D., Aram, P., Cook, M. J., & Grayden, D. B. (2014). 
-Estimation of effective connectivity via data-driven neural modeling. Frontiers in neuroscience, 8, 383
+1. [Freestone, D. R., Karoly, P. J., Neši?, D., Aram, P., Cook, M. J., & Grayden, D. B. (2014). 
+Estimation of effective connectivity via data-driven neural modeling. Frontiers in neuroscience, 8, 383](https://www.frontiersin.org/articles/10.3389/fnins.2014.00383/full)
 
-- 2 Ahmadizadeh, S., Karoly, P. J., Neši?, D., Grayden, D. B., Cook, M. J., Soudry, D., & Freestone, D. R. (2018). 
-Bifurcation analysis of two coupled Jansen-Rit neural mass models. PloS one, 13(3), e0192842.
+
+2. [Ahmadizadeh, S., Karoly, P. J., Nešic, D., Grayden, D. B., Cook, M. J., Soudry, D., & Freestone, D. R. (2018). 
+Bifurcation analysis of two coupled Jansen-Rit neural mass models. PloS one, 13(3)](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0192842)
+
+3. [This repository](https://github.com/pkaroly/Bifurcation-Estimation)
  
-- 3 Kuhlmann, L., Freestone, D. R., Manton, J. H., Heyse, B., Vereecke, H. E., Lipping, T., ... & Liley, D. T. (2016). 
+4. Kuhlmann, L., Freestone, D. R., Manton, J. H., Heyse, B., Vereecke, H. E., Lipping, T., ... & Liley, D. T. (2016). 
 Neural mass model-based tracking of anesthetic brain states. NeuroImage, 133, 438-456.
 

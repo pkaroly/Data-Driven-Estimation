@@ -9,8 +9,10 @@ To cite this code in academic research please reference
 
 ## Soure code
 Source code is located in src folder
+- Example.m
+- prop_mean_covariance.m
 
 ## Data
 One example seizure is provided in data folder. Additional seizure data can be found [here](www.google.com)
 
-## Supplmentary Figures
+## Supplementary Figures

@@ -1,7 +1,5 @@
 # Data-Driven-Estimation
-Neural model state and parameter estimation from data
-
-Code for Karoly et al (2018)
+Neural model state and parameter estimation from data by Karoly et al (2018)
 
 This code is licensed under the MIT license (see LICENSE.md)
 

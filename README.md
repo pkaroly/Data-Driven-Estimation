@@ -33,7 +33,7 @@ Estimation of effective connectivity via data-driven neural modeling. Frontiers 
 2. [Ahmadizadeh, S., Karoly, P. J., Nešic, D., Grayden, D. B., Cook, M. J., Soudry, D., & Freestone, D. R. (2018). 
 Bifurcation analysis of two coupled Jansen-Rit neural mass models. PloS one, 13(3)](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0192842)
 
-3. [This repository](https://github.com/pkaroly/Bifurcation-Estimation)
+3. [Bifurcation-Estimation (Repository)](https://github.com/pkaroly/Bifurcation-Estimation)
  
 4. Kuhlmann, L., Freestone, D. R., Manton, J. H., Heyse, B., Vereecke, H. E., Lipping, T., ... & Liley, D. T. (2016). 
 Neural mass model-based tracking of anesthetic brain states. NeuroImage, 133, 438-456.

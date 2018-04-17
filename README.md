@@ -19,7 +19,7 @@ Example code is located in Example folder
 - **generateData.m**: Runs the model at different values of input and generates simulated data
 
 ## Data
-One example seizure is provided in data folder. Additional seizure data can be found [here](www.google.com).
+One example seizure is provided in data folder. Additional seizure data can be found [LINK TO BE ADDED AFTER PUBLICATION](www.google.com).
 Data is a single .mat file with a variable, *Seizure* that has dimension T x N, where T is the number of samples, and N is the number of electrode channels (16). The seizure onset is 5 minutes from the start of the data and seizure offset is 1 minute from the end of the data. Data is sampled at 400Hz.
 
 ## Supplementary Figures

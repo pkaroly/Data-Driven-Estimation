@@ -23,7 +23,18 @@ One example seizure is provided in data folder. Additional seizure data can be f
 Data is a single .mat file with a variable, *Seizure* that has dimension T x N, where T is the number of samples, and N is the number of electrode channels (16). The seizure onset is 5 minutes from the start of the data and seizure offset is 1 minute from the end of the data. Data is sampled at 400Hz.
 
 ## Supplementary Figures
-Additional figures for connectivity parameter estimation and signal energy showing all channels.
+These figures relate specifically to the results presented in Karoly et al (2018). We provide additional figures for connectivity parameter estimation and signal energy showing all 16 channels.
+
+## Notes on Filter Implementation
+If you are not familiar with the Kalman filtering, a review of the recommended resources (or similar) is strongly advised before implementing this code. Density filters can be plagued by numerical instability and in practise fine-tuning of filter parameters is often required to run the filter on real-world data. We provide a non-exhaustive list of some gotchas and heuristics that we have observed over the years.
+
+- Data range is inconsistent with the model (scale your data so it lies not to far from the bounds of what your model can simulate)
+- State/parameter values differ by many orders of magnitude (scale your model)
+- Mismatched DC between model and data (add one constant offset parameter to the estimate)
+- Covariance, P becomes asymmetric (enforce symmetry with P = (P + P') / 2) 
+- Covariance becomes too small, breaking the numerics of the filter (add a very small amount to the diagonal of Q, initialise P larger)
+- Estimates don't converge (try using annealing to gradually increase R)
+- Too many parameters to estimate (maybe you need to lump them together)
 
 ## Further References
 More information can be found in the following refrences
@@ -37,3 +48,9 @@ Bifurcation analysis of two coupled Jansen-Rit neural mass models. PloS one, 13(
  
 4. Kuhlmann, L., Freestone, D. R., Manton, J. H., Heyse, B., Vereecke, H. E., Lipping, T., ... & Liley, D. T. (2016). 
 Neural mass model-based tracking of anesthetic brain states. NeuroImage, 133, 438-456.
+
+## Recommended Resources
+
+1. Optimal State Estimation: Kalman, H Infinity, and Nonlinear Approaches, Dan Simon and [the authors example code!](http://academic.csuohio.edu/simond/)
+
+3. Neural Control Engineering: The Emerging Intersection Between Control Theory, Steve Schiff (esp Chapter 2 and Chapter 5) and [all the example code](https://www.dropbox.com/sh/b23je0226el37wx/AABQJlWFxiI36u_cJba33NeXa?dl=0&preview=Code+Archives+Neural+Control+Engineering+062512.zip)

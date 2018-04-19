@@ -1,9 +1,12 @@
 # Data-Driven-Estimation
 Neural model state and parameter estimation from data by Karoly et al (2018)
 
-This code is licensed under the MIT license (see LICENSE.md)
+This code is licensed under the GNU General Public License v2.0. Note than when distributing derived works, the source code of the work must be made available under the same license.
 
-Figures in this repository are copyright (2018) Philippa Karoly
+Figures in this repository are licensed under Creative Commons with conditions:
+- Attribution: please cite Seizure Pathways: A model-based investigation, P.J. Karoly, L. Kuhlmann, D. Soudry, D.B. Grayden, M.J. Cook and D.R. Freestone (2018) *PLoS Comp. Bio.* \[under review\]
+- Share-Alike: you must distribute derived works under the same license
+- Non-Commercial
 
 To cite this code in academic research please reference:
 Seizure Pathways: A model-based investigation, P.J. Karoly, L. Kuhlmann, D. Soudry, D.B. Grayden, M.J. Cook and D.R. Freestone (2018) *PLoS Comp. Bio.* \[under review\]

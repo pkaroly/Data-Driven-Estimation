@@ -24,14 +24,14 @@ Example code is located in Example folder
 - **generateData.m**: Runs the model at different values of input and generates simulated data
 
 ## Data
-One example seizure is provided in data folder. Additional seizure data can be found [LINK TO BE ADDED AFTER PUBLICATION](www.google.com).
+One example seizure is provided in data folder. Additional seizure data can be found [here (NOTE DATA TO BE UPLOADED AFTER PUBLICATION)](https://figshare.com/s/733ed9c6b3f71875410a)
 Data is a single .mat file with a variable, *Seizure* that has dimension T x N, where T is the number of samples, and N is the number of electrode channels (16). The seizure onset is 5 minutes from the start of the data and seizure offset is 1 minute from the end of the data. Data is sampled at 400Hz.
 
 ## Supplementary Figures
 These figures relate specifically to the results presented in Karoly et al (2018). We provide additional figures for connectivity parameter estimation and signal energy showing all 16 channels.
 
 ## Notes on Filter Implementation
-If you are not familiar with the Kalman filtering, a review of the recommended resources (or similar) is strongly advised before implementing this code. Density filters can be plagued by numerical instability and in practise fine-tuning of filter parameters is often required to run the filter on real-world data. We provide a non-exhaustive list of some gotchas and heuristics that we have observed over the years.
+If you are not familiar with Kalman filtering, a review of the recommended resources (or similar) is strongly advised before implementing this code. Density filters can be plagued by numerical instability and in practise fine-tuning of filter parameters is often required to run the filter on real-world data. We provide a non-exhaustive list of some gotchas and heuristics that we have observed over the years.
 
 - Data range is inconsistent with the model (scale your data so it lies not to far from the bounds of what your model can simulate)
 - State/parameter values differ by many orders of magnitude (scale your model)

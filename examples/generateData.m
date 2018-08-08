@@ -11,6 +11,8 @@ clear
 clc
 close all
 
+addpath(genpath('../src/'));
+
 time = 5;
 Fs = 0.4e3;
 x = 1/Fs:1/Fs:time;
@@ -24,4 +26,32 @@ for input = 0:50:1000
     title(sprintf('input: %d',input));
     pause(0.5);
     drawnow;
+end
+
+%%
+function plotPotentials(xi)
+figure
+figure('name','parameter estimates' ,'units','normalized','position',[0 0 1 1] )
+subplot(411),plot(xi(1,:))
+title('Inhibitory -> Pyramidal');
+subplot(412),plot(xi(3,:))
+title('Pyramidal -> Inhibitory');
+subplot(413),plot(xi(5,:))
+title('Pyramidal -> Excitatory');
+subplot(414),plot(xi(7,:))
+title('Excitatory -> Pyramidal');
+end
+
+function plotAlpha(xi)
+    figure('name','parameter estimates' ,'units','normalized','position',[0 0 1 1] )
+    subplot(511),plot(xi(9,:))
+    title('Input');
+    subplot(512),plot(xi(10,:))
+    title('Inhibitory -> Pyramidal');
+    subplot(513),plot(xi(11,:))
+    title('Pyramidal -> Inhibitory');
+    subplot(514),plot(xi(12,:))
+     title('Pyramidal -> Excitatory');
+    subplot(515),plot(xi(13,:))
+    title('Excitatory -> Pyramidal');
 end

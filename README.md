@@ -24,7 +24,8 @@ Example code is located in Example folder
 - **generateData.m**: Runs the model at different values of input and generates simulated data
 
 ## Data
-One example seizure is provided in data folder. Additional seizure data can be found [here (NOTE DATA TO BE UPLOADED AFTER PUBLICATION)](https://figshare.com/s/733ed9c6b3f71875410a)
+One example seizure is provided in data folder. Additional seizure data can be downloaded online from the Epilepsy Ecosystem. Data are available as “Melbourne Seizure Prediction Trial Seizure Data” from https://www.epilepsyecosystem.org/howitworks/#data. After registering you will be emailed an invitation to download the data from figshare. The data are licensed under a Creative Commons license with conditions on ATTRIBUTION, NON-COMMERCIAL use and SHARE-ALIKE. Users will be required to create an account and sign a terms of use agreement that requires no commercial use, and restricts all works derived from the data to be made publicly available under the same licence.
+
 Data is a single .mat file with a variable, *Seizure* that has dimension T x N, where T is the number of samples, and N is the number of electrode channels (16). The seizure onset is 5 minutes from the start of the data and seizure offset is 1 minute from the end of the data. Data is sampled at 400Hz.
 
 ## Supplementary Figures

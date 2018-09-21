@@ -7,8 +7,6 @@ You may use, distribute and modify this code under the terms of the GNU General 
 
 Figures in this repository are licensed under Creative Commons with conditions:
 - Attribution: please cite Seizure Pathways: A model-based investigation, P.J. Karoly, L. Kuhlmann, D. Soudry, D.B. Grayden, M.J. Cook and D.R. Freestone (2018) *PLoS Comp. Bio.* \[under review\]
-- Share-Alike: you must distribute derived works under the same license
-- Non-Commercial
 
 To cite this code in academic research please reference:
 Seizure Pathways: A model-based investigation, P.J. Karoly, L. Kuhlmann, D. Soudry, D.B. Grayden, M.J. Cook and D.R. Freestone (2018) *PLoS Comp. Bio.* \[under review\]

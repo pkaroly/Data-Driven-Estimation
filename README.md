@@ -6,10 +6,10 @@ Copyright (C) 2018 Philippa J. Karoly, Dean R. Freestone - All Rights Reserved
 You may use, distribute and modify this code under the terms of the GNU General Public license v2.0. You can find a copy of this license in file LICENSE.md. Note than when distributing derived works, the source code of the work must be made available under the same license.
 
 Figures in this repository are licensed under Creative Commons with conditions:
-- Attribution: please cite Seizure Pathways: A model-based investigation, P.J. Karoly, L. Kuhlmann, D. Soudry, D.B. Grayden, M.J. Cook and D.R. Freestone (2018) *PLoS Comp. Bio.* \[under review\]
+- Attribution: please cite Seizure Pathways: A model-based investigation, P.J. Karoly, L. Kuhlmann, D. Soudry, D.B. Grayden, M.J. Cook and D.R. Freestone (2018) *PLoS Comp. Bio.*
 
 To cite this code in academic research please reference:
-Seizure Pathways: A model-based investigation, P.J. Karoly, L. Kuhlmann, D. Soudry, D.B. Grayden, M.J. Cook and D.R. Freestone (2018) *PLoS Comp. Bio.* \[under review\]
+Seizure Pathways: A model-based investigation, P.J. Karoly, L. Kuhlmann, D. Soudry, D.B. Grayden, M.J. Cook and D.R. Freestone (2018) *PLoS Comp. Bio.*
 
 ## Code
 Source code is located in src folder

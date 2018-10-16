@@ -1,15 +1,18 @@
 # Data-Driven-Estimation
 Neural model state and parameter estimation from data
 
-Copyright (C) 2018 Philippa J. Karoly, Dean R. Freestone - All Rights Reserved
+Copyright (C) 2018 Dean R. Freestone, Philippa J. Karoly - All Rights Reserved
 
 You may use, distribute and modify this code under the terms of the GNU General Public license v2.0. You can find a copy of this license in file LICENSE.md. Note than when distributing derived works, the source code of the work must be made available under the same license.
 
 Figures in this repository are licensed under Creative Commons with conditions:
-- Attribution: please cite Seizure Pathways: A model-based investigation, P.J. Karoly, L. Kuhlmann, D. Soudry, D.B. Grayden, M.J. Cook and D.R. Freestone (2018) *PLoS Comp. Bio.*
+- Attribution: please cite Seizure Pathways: A model-based investigation, P.J. Karoly, L. Kuhlmann, D. Soudry, D.B. Grayden, M.J. Cook and D.R. Freestone (2018) *PLoS Computational Biology* (https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1006403)
 
 To cite this code in academic research please reference:
-Seizure Pathways: A model-based investigation, P.J. Karoly, L. Kuhlmann, D. Soudry, D.B. Grayden, M.J. Cook and D.R. Freestone (2018) *PLoS Comp. Bio.*
+Seizure Pathways: A model-based investigation, P.J. Karoly, L. Kuhlmann, D. Soudry, D.B. Grayden, M.J. Cook and D.R. Freestone (2018) *PLoS Computational Biology* (https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1006403)
+
+To cite the data in academic researh please reference:
+Melbourne University NeuroVista Seizure Prediction Data (https://doi.org/10.26188/5b6a999fa2316) and Cook, M. J., O'Brien, T. J., Berkovic, S. F., Murphy, M., Morokoff, A., Fabinyi, G., ... & Hosking, S. (2013). Prediction of seizure likelihood with a long-term, implanted seizure advisory system in patients with drug-resistant epilepsy: a first-in-man study. The Lancet Neurology, 12(6), 563-571.
 
 ## Code
 Source code is located in src folder

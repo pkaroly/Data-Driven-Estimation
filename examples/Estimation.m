@@ -27,7 +27,7 @@ Fs = 0.4e3;
 if ~isempty(input_offset)
     % reset the offset
     my = mean(y);
-    input_offset = -my/0.0325;   % if in mV
+    input_offset = -my/0.0325;   % Scale (mV) to convert constant input to a steady-state effect on pyramidal membrane. NB DIVIDE BY 10e3 for VOLTS
     [A,B,C,N_states,N_syn,N_inputs,N_samples,xi, ...
         v0,varsigma,Q,R,H,y] = set_params(input,input_offset);
 end
@@ -90,22 +90,40 @@ for iCh = 1:16
     end
     
     close all
-    figure('name','membrane potential estimates' ,'units','normalized','position',[0 0 1 1] )
-    subplot(411),plot(xi_hat(1,:))
-    subplot(412),plot(xi_hat(3,:))
-    subplot(413),plot(xi_hat(5,:))
-    subplot(414),plot(xi_hat(7,:))
+    figure
+    x = (1:N_samples)/Fs;
+    y = H*xi_hat;
+    plot(x,y,'k');
+    set(gca,'box','off')
+    xlabel('Time (s)')
+    ylabel('ECoG (mv)')
     
-    figure('name','parameter estimates' ,'units','normalized','position',[0 0 1 1] )
-    subplot(511),plot(xi_hat(9,:))
-    title('Input');
-    subplot(512),plot(xi_hat(10,:))
+    % this scale is from set_params (used for numerical stability)
+    scale = 50;                       
+    figure('name','membrane potential estimates' ,'units','normalized','position',[0 0 1 1] )
+    subplot(411),plot(x,xi_hat(1,:)/scale)
     title('Inhibitory -> Pyramidal');
-    subplot(513),plot(xi_hat(11,:))
+    subplot(412),plot(x,xi_hat(3,:)/scale)
     title('Pyramidal -> Inhibitory');
-    subplot(514),plot(xi_hat(12,:))
+    subplot(413),plot(x,xi_hat(5,:)/scale)
+    title('Pyramidal -> Excitatory');
+    subplot(414),plot(x,xi_hat(7,:)/scale)
+    title('Excitatory -> Pyramidal');
+    xlabel('Time (s)')
+    ylabel('post-synaptic membrane potential (mV)');
+    
+%     Units of these are not meaningful because they are lumped parameters.
+%     Typically we assess them relative to some other state (i.e. background)
+    figure('name','parameter estimates' ,'units','normalized','position',[0 0 1 1] )
+    subplot(511),plot(x,xi_hat(9,:))
+    title('Input');
+    subplot(512),plot(x,xi_hat(10,:))
+    title('Inhibitory -> Pyramidal');
+    subplot(513),plot(x,xi_hat(11,:))
+    title('Pyramidal -> Inhibitory');
+    subplot(514),plot(x,xi_hat(12,:))
      title('Pyramidal -> Excitatory');
-    subplot(515),plot(xi_hat(13,:))
+    subplot(515),plot(x,xi_hat(13,:))
     title('Excitatory -> Pyramidal');
     drawnow;
 end

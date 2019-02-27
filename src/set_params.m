@@ -98,7 +98,12 @@ in_tau = 0.020;                     % inhibitory synaptic time constant (s)
 
 % input to py population
 %
-input = input*scale;                   % ! scale here ! the input is a membrane potential input the pyramidal population this is similar to setting it at 270
+% SCALE 1 - this is to avoid large differences between states upsetting the filter 
+% (magnitude of the membrane potentials and their derivatives)
+input = input*scale;
+% SCALE 2 - this converts a constant input to its effect on the pyramidal
+% membrane potential by taking the steady state limit of the synaptic kernel
+% (assumption that the input varies much slower than the state variables).
 input = input * alpha_e/ex_tau * ex_tau^2;
 %       ~~~~~   ~~~~~~~~~~~~~~   ~~~~~~~~~
 %       input   synaptic gain    integral of kernel

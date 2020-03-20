@@ -2,7 +2,7 @@
 % runs the state/parameter estimation and plots results for a single
 % channel at a time
 
-%% 
+%%
 % Dean Freestone, Philippa Karoly 2016
 % This code is licensed under the MIT License 2018
 
@@ -49,81 +49,79 @@ kappa_0 = 10000;
 t_end_anneal = N_samples/20;
 
 % loop through 16 chans
-for iCh = 1:16
+iCh = 1;
+
+fprintf('Channel %02d ...',iCh);
+
+% get one channel at a time
+% NB - portal data is inverted. we need to scale it to some
+% 'reasonable' range for the model, but still capture amplitude
+% differences bw seizures
+y = -0.5*Seizure(:,iCh);
+N_samples = length(y);
+
+for t=2:N_samples       % N_samples
     
-    fprintf('Channel %02d ...',iCh);
+    xi_0p = squeeze(xi_hat(:,t-1));
+    P_0p = squeeze(P_hat(:,:,t-1));
     
-    % get one channel at a time
-    % NB - portal data is inverted. we need to scale it to some
-    % 'reasonable' range for the model, but still capture amplitude
-    % differences bw seizures
-    y = -0.5*Seizure(:,iCh);
-    N_samples = length(y);
+    % predict
+    %
+    [xi_1m, P_1m] = prop_mean_and_cov(N_syn,N_states,N_inputs,A,B,C,P_0p,xi_0p,varsigma,v0,Q);
     
-    for t=2:N_samples       % N_samples
-        
-        xi_0p = squeeze(xi_hat(:,t-1));
-        P_0p = squeeze(P_hat(:,:,t-1));
-        
-        % predict
-        %
-        [xi_1m, P_1m] = prop_mean_and_cov(N_syn,N_states,N_inputs,A,B,C,P_0p,xi_0p,varsigma,v0,Q);
-        
-        if (t<=t_end_anneal) && anneal_on
-            kappa = kappa_0^((t_end_anneal-t)/(t_end_anneal-1));
-        else
-            kappa = 1;
-        end
-        
-        K = P_1m*H'/(H*P_1m*H' + kappa*R);
-        
-        % correct
-        %
-        xi_hat(:,t) = xi_1m + K*(y(t) - H*xi_1m);
-        P_hat(:,:,t) = (eye(N_states) - K*H)*P_1m;
-        P_diag(:,t) = diag(squeeze(P_hat(:,:,t)));
-        
-        if t > 2
-            fprintf('\b\b\b\b');
-        end
-        fprintf('%03d%%', round(100*t/N_samples));
+    if (t<=t_end_anneal) && anneal_on
+        kappa = kappa_0^((t_end_anneal-t)/(t_end_anneal-1));
+    else
+        kappa = 1;
     end
     
-    close all
-    figure
-    x = (1:N_samples)/Fs;
-    y = H*xi_hat;
-    plot(x,y,'k');
-    set(gca,'box','off')
-    xlabel('Time (s)')
-    ylabel('ECoG (mv)')
+    K = P_1m*H'/(H*P_1m*H' + kappa*R);
     
-    % this scale is from set_params (used for numerical stability)
-    scale = 50;                       
-    figure('name','membrane potential estimates' ,'units','normalized','position',[0 0 1 1] )
-    subplot(411),plot(x,xi_hat(1,:)/scale)
-    title('Inhibitory -> Pyramidal');
-    subplot(412),plot(x,xi_hat(3,:)/scale)
-    title('Pyramidal -> Inhibitory');
-    subplot(413),plot(x,xi_hat(5,:)/scale)
-    title('Pyramidal -> Excitatory');
-    subplot(414),plot(x,xi_hat(7,:)/scale)
-    title('Excitatory -> Pyramidal');
-    xlabel('Time (s)')
-    ylabel('post-synaptic membrane potential (mV)');
+    % correct
+    %
+    xi_hat(:,t) = xi_1m + K*(y(t) - H*xi_1m);
+    P_hat(:,:,t) = (eye(N_states) - K*H)*P_1m;
+    P_diag(:,t) = diag(squeeze(P_hat(:,:,t)));
     
+    if t > 2
+        fprintf('\b\b\b\b');
+    end
+    fprintf('%03d%%', round(100*t/N_samples));
+end
+
+close all
+figure
+x = (1:N_samples)/Fs;
+y = H*xi_hat;
+plot(x,y,'k');
+set(gca,'box','off')
+xlabel('Time (s)')
+ylabel('ECoG (mv)')
+
+% this scale is from set_params (used for numerical stability)
+scale = 50;
+figure('name','membrane potential estimates' ,'units','normalized','position',[0 0 1 1] )
+subplot(411),plot(x,xi_hat(1,:)/scale)
+title('Inhibitory -> Pyramidal');
+subplot(412),plot(x,xi_hat(3,:)/scale)
+title('Pyramidal -> Inhibitory');
+subplot(413),plot(x,xi_hat(5,:)/scale)
+title('Pyramidal -> Excitatory');
+subplot(414),plot(x,xi_hat(7,:)/scale)
+title('Excitatory -> Pyramidal');
+xlabel('Time (s)')
+ylabel('post-synaptic membrane potential (mV)');
+
 %     Units of these are not meaningful because they are lumped parameters.
 %     Typically we assess them relative to some other state (i.e. background)
-    figure('name','parameter estimates' ,'units','normalized','position',[0 0 1 1] )
-    subplot(511),plot(x,xi_hat(9,:))
-    title('Input');
-    subplot(512),plot(x,xi_hat(10,:))
-    title('Inhibitory -> Pyramidal');
-    subplot(513),plot(x,xi_hat(11,:))
-    title('Pyramidal -> Inhibitory');
-    subplot(514),plot(x,xi_hat(12,:))
-     title('Pyramidal -> Excitatory');
-    subplot(515),plot(x,xi_hat(13,:))
-    title('Excitatory -> Pyramidal');
-    drawnow;
-end
+figure('name','parameter estimates' ,'units','normalized','position',[0 0 1 1] )
+subplot(511),plot(x,xi_hat(9,:))
+title('Input');
+subplot(512),plot(x,xi_hat(10,:))
+title('Inhibitory -> Pyramidal');
+subplot(513),plot(x,xi_hat(11,:))
+title('Pyramidal -> Inhibitory');
+subplot(514),plot(x,xi_hat(12,:))
+title('Pyramidal -> Excitatory');
+subplot(515),plot(x,xi_hat(13,:))
+title('Excitatory -> Pyramidal');

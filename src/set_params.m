@@ -35,7 +35,7 @@
 %%
 
 function [A,B,C,N_states,N_syn,N_inputs,N_samples,xi,v0,varsigma,Q,R,H,y] = ...
-    set_params(input,input_offset,TimeOfSim,Fs)
+    set_params(input,input_offset,TimeOfSim,Fs, varargin)
 
 scale = 50;                         % this is to get states and derivatives on the same order of magnitude
 
@@ -60,10 +60,14 @@ N_states = 3*N_syn + N_inputs;        % number of states / dimension of the stat
 %% define the disturbance covariance matrix
 %
 sigma_all = 5e-8;                               % something small for all states
-sigma_input = 5e-4;                             % for input
-sigma_params = 5e-5;%sigma_all;
+sigma_input = 5e-4;                          % for input
+sigma_params = 5e-5;                       % sigma_all;
 sigma_offset = 5e-6;
-sigma_R = 1e-3;
+if ~isempty(varargin)
+    sigma_R = varargin{1};
+else
+    sigma_R = 1e-3;                                 % measurement noise
+end
 
 Q = eye(N_states)*(scale*sqrt(dt)*sigma_all)^2;                             % add a tiny bit of noise to all states (added for numerical stability)
 Q(2*N_syn+1:end,2*N_syn+1:end) = eye(N_syn+N_inputs)*(scale*sqrt(dt)*sigma_params)^2;

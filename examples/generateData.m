@@ -13,19 +13,20 @@ close all
 
 addpath(genpath('../src/'));
 
-time = 5;
-Fs = 0.4e3;
+time = 60;
+Fs = 1e3;
 x = 1/Fs:1/Fs:time;
-for input = 0:50:1000
+sigma_R = 0;
+for input = 0:10:320
     [A,B,C,N_states,N_syn,N_inputs,N_samples,xi, ...
-        v0,varsigma,Q,R,H,y] = set_params(input,[],time,Fs);
+        v0,varsigma,Q,R,H,y] = set_params(input,[],time,Fs, sigma_R);
     plot(x,y,'k');
     set(gca,'box','off','xtick',[0 time]);
     xlabel('Time (s)');
     ylabel('ECoG (mV)');
-    title(sprintf('input: %d',input));
-    pause(0.5);
+    title(sprintf('input / drive: %d',input));
     drawnow;
+    pause(0.5);
 end
 
 %%
